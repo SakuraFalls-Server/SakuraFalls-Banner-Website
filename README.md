@@ -1,6 +1,6 @@
 # Banner Website
 
-A simple PHP-hostable website that uses mostly JavaScript to let the user customize a webpage. 
+A simple PHP-hostable website that uses mostly JavaScript to let the user customize a banner. 
 It is meant to be simplistic and simple to use by design, so that banners made for our server 
 have a more-or-less consistent look. Enjoy!
 
