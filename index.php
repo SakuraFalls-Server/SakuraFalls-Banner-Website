@@ -111,7 +111,8 @@ If not, see <https://www.gnu.org/licenses/>.
 
     <footer>
         <p>
-            Source code under <a href="https://www.gnu.org/licenses/">GNU GPL v3</a>.
+            <a href="https://github.com/SakuraFalls-Server/SakuraFalls-Banner-Website">Source code</a> 
+            under <a href="https://www.gnu.org/licenses/">GNU GPL v3</a>.
             Provided backgrounds under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>
         </p>
         <div>
