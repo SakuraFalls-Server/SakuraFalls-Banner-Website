@@ -55,6 +55,31 @@ function drawCover(img, cw, ch) {
     ctx.drawImage(img, sx, sy, sw, sh, 0, 0, cw, ch);
 }
 
+function drawCoverOverscan(img, cw, ch, bleed) {
+    var ew = cw + bleed * 2;
+    var eh = ch + bleed * 2;
+    var iw = img.naturalWidth || img.width;
+    var ih = img.naturalHeight || img.height;
+    if (!iw || !ih) {
+        return;
+    }
+    var imageRatio = iw / ih;
+    var canvasRatio = ew / eh;
+    var sw, sh, sx, sy;
+    if (imageRatio > canvasRatio) {
+        sh = ih;
+        sw = sh * canvasRatio;
+        sx = (iw - sw) / 2;
+        sy = 0;
+    } else {
+        sw = iw;
+        sh = sw / canvasRatio;
+        sx = 0;
+        sy = (ih - sh) / 2;
+    }
+    ctx.drawImage(img, sx, sy, sw, sh, -bleed, -bleed, ew, eh);
+}
+
 function fitLines(text, maxWidth, baseSize, weight) {
     var size = baseSize;
     var minSize = 4;
@@ -118,11 +143,14 @@ function draw() {
     var img = activeImage();
     if (img !== null) {
         if (blurInput.checked) {
-            ctx.filter = 'blur(' + (4 * scale) + 'px)';
+            var blurRadius = 4 * scale;
+            var bleed = Math.ceil(blurRadius * 3);
+            ctx.filter = 'blur(' + blurRadius + 'px)';
+            drawCoverOverscan(img, w, h, bleed);
         } else {
             ctx.filter = 'none';
+            drawCover(img, w, h);
         }
-        drawCover(img, w, h);
     }
     ctx.filter = 'none';
 
